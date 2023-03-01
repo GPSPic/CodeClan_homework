@@ -31,6 +31,17 @@ print(diff_numbers)
 
 # for number in numbers:
     # if number == 2:
+
+numbers = [1, 6, 2, 2, 7, 1, 6, 13, 99, 7]
+
+first_two = numbers.index(2)
+numbers.pop(first_two)
+
+second_two = numbers.index(2)
+
+if first_two == second_two:
+    print(True)
+
         
 
 # 4. Print the sum of the numbers, 
@@ -50,6 +61,33 @@ print(diff_numbers)
 #         sum_outside_sixseven += number
 
 # print(sum_outside_sixseven)
+
+numbers = [1, 6, 2, 2, 7, 1, 6, 13, 99, 7]
+
+sum_numbers = 0
+index_six = numbers.index(6)
+print(index_six)
+index_seven = numbers.index(7)
+print(index_seven)
+
+# while numbers.count(6) != 0 or numbers.count(7) != 0:
+#     del numbers[index_six:index_seven]
+# another failed attempt
+
+#  another aborted attempt
+# for number in numbers:
+#     if index_six < index_seven:
+#         del numbers[index_six:index_seven]
+#     else:
+#         sum_numbers += number
+
+# infinite loop, whoops!
+# while index_six < index_seven:
+#     del numbers[index_six:index_seven]
+
+print(numbers)
+print(sum_numbers)
+
 
 # 5. HARD! Print the sum of the numbers. 
 #    Except the number 13 is very unlucky, so it does not count.
