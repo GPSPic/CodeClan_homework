@@ -32,24 +32,42 @@ def number_to_full_month_name(number):
     calander_index = number - 1 
     return calander[calander_index]
 
-def number_to_short_month_name(number):
-    calander_short = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    calander_short_index = number - 1 
-    return calander_short[calander_short_index]
+def number_to_short_month_name(month_number):
+    # calander_short = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    # calander_short_index = number - 1 
+    # return calander_short[calander_short_index]
+    short_month = number_to_full_month_name(month_number)[0:3]
+    return short_month
 
 def volume_cube(side):
     volume = side ** 3
-    return volume
+    # return volume
+    return pow(side, 3)
+
+# def reverse_string(text):
+    # gnirts_desrever = []
+    # index = len(text) #calculate length of string and save in index variable
+    # while index > 0:
+    #     gnirts_desrever += text[index-1] # save the value of text[index-1] in gnirts_desrever
+    #     index = index - 1 #decrement index for encon
+    # gnirts_desrever = ''.join(gnirts_desrever)
+    # return gnirts_desrever
+    # gnirts_desrever = list(reversed(text))
+    # return ''.join(gnirts_desrever)
+    
+    # string_reversed = ''
+    # index = len(text)
+    # while index > 0:
+    #     string_reversed += text[ index - 1 ]
+    #     index = index -1
+    # return string_reversed
 
 def reverse_string(text):
-    gnirts_desrever = []
-    index = len(text) #calculate length of string and save in index variable
-    while index > 0:
-        gnirts_desrever += text[index-1] # save the value of str[index-1] in gnirts_desrever
-        index = index - 1 #decrement index for encon
-    gnirts_desrever = ''.join(gnirts_desrever)
-    return gnirts_desrever
+    new_string = ""
+    for letter in text:
+        new_string = letter + new_string
+    return new_string
 
 def fahrenheit_to_celsius(temp_F):
     temp_C = (temp_F - 32) * 5 / 9
-    return temp_C
+    return round(temp_C, 2)
