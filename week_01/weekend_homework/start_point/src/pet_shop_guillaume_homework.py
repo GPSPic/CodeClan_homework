@@ -33,6 +33,15 @@ def get_pets_by_breed(shop, searching_for_breed):
             pets_matching_the_breed.append(pet_info)
     return pets_matching_the_breed
 
+# def get_pets_by_breed(pet_shop, animal_breed):
+#     breeds_in_stock = []
+#     pet_shop = pet_shop["pets"]
+#     breed_type = animal_breed
+#     for pet in pet_shop:
+#               if breed_type == pet["breed"]:
+#                 breeds_in_stock.append(breed_type)
+#     return breeds_in_stock
+
 # def find_pet_by_name(shop, pet_name):
 #     pet_in_shop = {}
 #     for pet_info in shop["pets"]:
@@ -61,6 +70,31 @@ def add_pet_to_stock(shop, new_pet):
     shop["pets"].append(new_pet)
 
 # using index of customer in list provided, find cash value
-def get_customer_cash(customer_index):
-    return customer_index["cash"]
+def get_customer_cash(customer):
+    return customer["cash"]
 
+# removing amount of cash from desiganted customer
+def remove_customer_cash(customer, amount):
+    customer["cash"] -= amount
+
+# get the current number of pets for the designated customer
+def get_customer_pet_count(customer):
+    return len(customer["pets"])
+
+# adding the new pet dict to the customer's pet list
+def add_pet_to_customer(customer, new_pet):
+    customer["pets"].append(new_pet)
+
+# call previous function to get cash amount and compare to pet price
+def customer_can_afford_pet(customer, new_pet):
+    enough_dough = False
+    if get_customer_cash(customer) >= new_pet["price"]:
+        enough_dough = True
+    return enough_dough
+
+def sell_pet_to_customer(shop, pet, customer):
+    if  pet != None and customer_can_afford_pet(customer, pet) == True:
+        add_pet_to_customer(customer, pet)
+        increase_pets_sold(shop,1)
+        remove_customer_cash(customer, pet["price"])
+        add_or_remove_cash(shop, pet["price"])
