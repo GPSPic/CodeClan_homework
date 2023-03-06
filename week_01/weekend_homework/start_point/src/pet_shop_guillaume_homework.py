@@ -33,6 +33,7 @@ def get_pets_by_breed(shop, searching_for_breed):
             pets_matching_the_breed.append(pet_info)
     return pets_matching_the_breed
 
+# does not work, for loop doe snot check correct information
 # def get_pets_by_breed(pet_shop, animal_breed):
 #     breeds_in_stock = []
 #     pet_shop = pet_shop["pets"]
@@ -42,6 +43,7 @@ def get_pets_by_breed(shop, searching_for_breed):
 #                 breeds_in_stock.append(breed_type)
 #     return breeds_in_stock
 
+# does not work
 # def find_pet_by_name(shop, pet_name):
 #     pet_in_shop = {}
 #     for pet_info in shop["pets"]:
@@ -52,12 +54,16 @@ def get_pets_by_breed(shop, searching_for_breed):
 #     return pet_in_shop
 
 def find_pet_by_name(shop, pet_name):
-    pet_in_shop = None #assigning None for future test and for empty results
-    for pet_info in shop["pets"]: #pet_info refers to each pet's dictionnary
-        if pet_name in pet_info["name"]:
-            pet_in_shop = {} #change variable to a dict
-            pet_in_shop.update(pet_info) #update dict with the pet's dict
-    return pet_in_shop
+    # pet_in_shop = None #assigning None for future test and for empty results
+    # for pet_info in shop["pets"]: #pet_info refers to each pet's dictionnary
+    #     if pet_name in pet_info["name"]:
+    #         pet_in_shop = {} #change variable to a dict
+    #         pet_in_shop.update(pet_info) #update dict with the pet's dict
+            # can also be pet_in_shop = pet_info, as pet_info is already a dictionary
+    # return pet_in_shop
+    for pet in shop["pets"]:
+        if pet_name in pet["name"]:
+            return pet
 
 # find the dict containing the pet name and remove it
 def remove_pet_by_name(shop, pet_name):
@@ -87,13 +93,20 @@ def add_pet_to_customer(customer, new_pet):
 
 # call previous function to get cash amount and compare to pet price
 def customer_can_afford_pet(customer, new_pet):
-    enough_dough = False
-    if get_customer_cash(customer) >= new_pet["price"]:
-        enough_dough = True
-    return enough_dough
+    # works, but other complicated
+    # enough_dough = False
+    # if get_customer_cash(customer) >= new_pet["price"]:
+    #     enough_dough = True
+    # return enough_dough
+    return customer["cash"] >= new_pet["price"]
+# operators automatically check if operation is true/false
+
 
 def sell_pet_to_customer(shop, pet, customer):
     if  pet != None and customer_can_afford_pet(customer, pet) == True:
+    # also works with pet != None and customer_can_afford_pet(customer, pet):,
+    # true is implied in result of can_afford_pet function
+        remove_pet_by_name(shop, pet["name"])
         add_pet_to_customer(customer, pet)
         increase_pets_sold(shop,1)
         remove_customer_cash(customer, pet["price"])
