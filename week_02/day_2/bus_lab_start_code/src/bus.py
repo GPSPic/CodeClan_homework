@@ -21,6 +21,8 @@ class Bus:
 
     def pick_up_from_stop(self, bus_stop):
         # self.passengers.extend(bus_stop.queue) - works, but requires constant access to information in another class
-        queue = bus_stop.get_queue() 
-        self.passengers.extend(queue) #works and requires requesting the information from the other class
+        # queue = bus_stop.get_queue() 
+        # self.passengers.extend(queue) #works and requires requesting the information from the other class
+        for passenger in bus_stop.queue:
+            self.pick_up(passenger)
         bus_stop.clear_queue()
