@@ -11,3 +11,6 @@ class BusStop:
     
     def clear_queue(self):
         self.queue.clear()
+
+    def get_queue(self):
+        return self.queue
