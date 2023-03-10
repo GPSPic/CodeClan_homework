@@ -1,4 +1,4 @@
 class Song:
-    def __init__(self, name, licensing_fee):
+    def __init__(self, name, price):
         self.name = name
-        self.licensing_fee = licensing_fee
+        self.price = price

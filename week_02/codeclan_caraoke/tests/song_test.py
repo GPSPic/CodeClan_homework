@@ -11,4 +11,4 @@ class TestSong(unittest.TestCase):
 
 # test 4
     def test_song_has_price(self):
-        self.assertEqual(5, self.song.licensing_fee)
+        self.assertEqual(5, self.song.price)

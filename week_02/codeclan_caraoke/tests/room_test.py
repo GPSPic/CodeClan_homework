@@ -29,12 +29,12 @@ class TestRoom(unittest.TestCase):
 
 # test 11 - tests entry fee and interaction with Guest
     def test_guest_can_pay_for_room__true(self):
-        fee = self.room1.entry_fee
+        fee = self.room1.price
         self.assertTrue(self.guest4.can_pay_for_item(fee))
     
 #  test 12 - failure condition for test 11
     def test_guest_can_pay_for_room__not_enough_money(self):
-        fee = self.room3.entry_fee
+        fee = self.room3.price
         self.assertFalse(self.guest4.can_pay_for_item(fee))
 
 # test 13 - used for check_in and potential reassignment to another room later
@@ -69,8 +69,8 @@ class TestRoom(unittest.TestCase):
         self.room3.check_in(self.guest1)
         self.room3.check_in(self.guest2)
         self.assertEqual(2, self.room3.get_occupancy())
-        self.assertEqual(38, self.guest1.wallet)
-        self.assertEqual(18, self.guest2.wallet)
+        self.assertEqual(38, self.guest1.get_wallet())
+        self.assertEqual(18, self.guest2.get_wallet())
 
 #  test 20 - test check_out success
     def test_check_out__success(self):
@@ -104,9 +104,32 @@ class TestRoom(unittest.TestCase):
         self.assertIsNone(cheer)
 
 #  test 25 - add entry fees to a daily tab for the room by updating check_in()
-    def test_add_entry_fee_to_room_tab(self):
+    def test_add_price_to_room_tab(self):
         self.room5.check_in(self.guest2)
         self.room5.check_in(self.guest3)
         self.assertEqual(30, self.room5.tab)
 
-#  test 26 - test if
+# test 27 - one or more guests can afford to add a song to a playlist
+    def test_can_afford_to_add_song_to_room_playlist__true(self):
+        self.room3.check_in(self.guest2)
+        self.room3.check_in(self.guest3)
+        group_can_afford = self.room3.group_can_afford_item(self.song4)
+        self.assertTrue(group_can_afford)
+        # self.assertEqual(18, self.guest2.get_wallet())
+        # self.assertEqual(8, self.guest3.get_wallet())
+
+#  test 28 - test 28 fail condition for not enough pooled money
+    def test_can_afford_to_add_song_to_room_playlist__false(self):
+        self.room5.check_in(self.guest2)
+        self.room5.check_in(self.guest3)
+        group_can_afford = self.room3.group_can_afford_item(self.song3)
+        self.assertFalse(group_can_afford)
+
+
+#  test 29 - test to have guest pay to add a song to a room's playlist
+    # def test_charge_fee_to_group_to_add_song_to_room_list__1_guest(self):
+    #     self.room3.check_in(self.guest2)
+    #     self.room3.charge_group_and_add_song(self.song4)
+    #     self.assertEqual(4, len(self.room1.song_list))
+    #     self.assertEqual(15, self.guest2.get_wallet())
+

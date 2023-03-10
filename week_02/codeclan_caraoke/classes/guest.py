@@ -11,4 +11,5 @@ class Guest:
         if self.can_pay_for_item(price):
             self.wallet -= price
 
-    
+    def get_wallet(self):
+        return self.wallet

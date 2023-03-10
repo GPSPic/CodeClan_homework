@@ -1,10 +1,10 @@
 class Room:
-    def __init__(self, number_id, room_type, capacity, song_list, entry_fee):
+    def __init__(self, number_id, room_type, capacity, song_list, price):
         self.number_id = number_id
         self.room_type = room_type
         self.capacity = capacity
         self.song_list = song_list
-        self.entry_fee = entry_fee
+        self.price = price
         self.drink_list = []
         self.tab = 0
         self.guest_list = []
@@ -17,7 +17,7 @@ class Room:
             return False
         if self.get_occupancy() >= self.capacity:
             return False
-        if not guest.can_pay_for_item(self.entry_fee):
+        if not guest.can_pay_for_item(self.price):
             return False
         else:
             return True
@@ -25,8 +25,8 @@ class Room:
     def check_in(self, guest):
         if self.can_check_in(guest):
             self.guest_list.append(guest)
-            guest.reduce_wallet(self.entry_fee)
-            self.tab += self.entry_fee
+            guest.reduce_wallet(self.price)
+            self.tab += self.price
 
     def check_out(self, guest):
         if guest in self.guest_list:
@@ -39,3 +39,9 @@ class Room:
         if guest.favourite_song in self.song_list:
             print ("Yaas")
             return "Yaas"
+        
+    def group_can_afford_item(self, item):
+        guests_pooled_money = 0
+        for guest in self.guest_list:
+            guests_pooled_money += guest.get_wallet()
+        return guests_pooled_money >= item.price

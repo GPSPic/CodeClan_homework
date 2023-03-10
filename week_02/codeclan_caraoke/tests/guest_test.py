@@ -28,18 +28,23 @@ class TestGuest(unittest.TestCase):
 
 # test 8 - part of check_in for Room
     def test_guest_can_pay_for_item__true(self):
-        can_pay = self.guest1.can_pay_for_item(self.song1.licensing_fee)
+        can_pay = self.guest1.can_pay_for_item(self.song1.price)
         self.assertTrue(can_pay)
 
 #  test 9 - failure for lack of money to check_in
     def test_gest_can_pay_for_item__not_enough_money(self):
-        song = self.guest4.favourite_song.licensing_fee
+        song = self.guest4.favourite_song.price
         cannot_pay = self.guest4.can_pay_for_item(song)
 
 #  test 10
     def test_guest_reduce_wallet(self):
-        price = self.guest3.favourite_song.licensing_fee
+        price = self.guest3.favourite_song.price
         self.guest1.reduce_wallet(price)
         self.assertEqual(20, self.guest1.wallet)
+
+#  test 26
+    def test_current_wallet_value(self):
+        self.guest1.reduce_wallet(15)
+        self.assertEqual(35, self.guest1.get_wallet())
 
     
