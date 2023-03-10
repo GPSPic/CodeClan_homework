@@ -26,7 +26,16 @@ class Room:
         if self.can_check_in(guest):
             self.guest_list.append(guest)
             guest.reduce_wallet(self.entry_fee)
+            self.tab += self.entry_fee
 
     def check_out(self, guest):
         if guest in self.guest_list:
             self.guest_list.remove(guest)
+
+    def add_song(self, song):
+        self.song_list.append(song)
+
+    def cheer_for_fav_song(self, guest):
+        if guest.favourite_song in self.song_list:
+            print ("Yaas")
+            return "Yaas"

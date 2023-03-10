@@ -86,4 +86,27 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(1, self.room3.get_occupancy())
 
 # test 22 - add a song to a room playlist
-    
+    def test_add_song_to_playlist(self):
+        self.room1.add_song(self.song3)
+        self.assertEqual(3, len(self.room1.song_list))
+
+
+#  test 23 - guest cheers if their fav song is in the room
+    def test_guest_cheers_for_fav_song(self):
+        self.room2.check_in(self.guest2)
+        cheer = self.room2.cheer_for_fav_song(self.guest2)
+        self.assertEqual("Yaas", cheer)
+
+# test 24 - no cheer if fav song not in list
+    def test_guest_cheers_for_fav_song__false(self):
+        self.room2.check_in(self.guest4)
+        cheer = self.room2.cheer_for_fav_song(self.guest4)
+        self.assertIsNone(cheer)
+
+#  test 25 - add entry fees to a daily tab for the room by updating check_in()
+    def test_add_entry_fee_to_room_tab(self):
+        self.room5.check_in(self.guest2)
+        self.room5.check_in(self.guest3)
+        self.assertEqual(30, self.room5.tab)
+
+#  test 26 - test if
