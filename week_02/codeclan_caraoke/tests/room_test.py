@@ -21,10 +21,69 @@ class TestRoom(unittest.TestCase):
         self.drink2 = Drink("Gin", 5)
         self.drink3 = Drink("Wine", 4)
         self.drink_list = [self.drink1, self.drink2, self.drink3]
-        self.room1 = Room(1, "Bargain", 1, self.bargain_song_list, 5)
-        self.room2 = Room(2, "Bargain", 1, self.bargain_song_list, 5)
-        self.room3 = Room(3, "Standard", 2, self.standard_song_list, 7)
-        self.room4 = Room(4, "Standard", 2, self.standard_song_list, 7)
-        self.room5 = Room(4, "Luxury", 3, self.luxury_song_list, 10)
+        self.room1 = Room(1, "Bargain", 1, self.bargain_song_list, 10)
+        self.room2 = Room(2, "Bargain", 1, self.bargain_song_list, 10)
+        self.room3 = Room(3, "Standard", 2, self.standard_song_list, 12)
+        self.room4 = Room(4, "Standard", 2, self.standard_song_list, 12)
+        self.room5 = Room(4, "Luxury", 3, self.luxury_song_list, 15)
 
-        
+# test 11 - tests entry fee and interaction with Guest
+    def test_guest_can_pay_for_room__true(self):
+        fee = self.room1.entry_fee
+        self.assertTrue(self.guest4.can_pay_for_item(fee))
+    
+#  test 12 - failure condition for test 11
+    def test_guest_can_pay_for_room__not_enough_money(self):
+        fee = self.room3.entry_fee
+        self.assertFalse(self.guest4.can_pay_for_item(fee))
+
+# test 13 - used for check_in and potential reassignment to another room later
+    def test_get_occupancy__empty(self):
+        self.assertEqual(0, self.room1.get_occupancy())
+
+#  test 14 - second test for occupancy
+    def test_get_occupancy__one_guest(self):
+        self.room1.guest_list = [self.guest1]
+        self.assertEqual(1, self.room1.get_occupancy())
+
+# test 15 - setting condition allowing guest to check_in (money, capacity)
+    def test_can_check_in__true(self):
+        self.assertTrue(self.room1.can_check_in(self.guest1))
+
+#  test 16 - test 15 fail condition for lack of money
+    def test_can_check_in__not_enough_money(self):
+        self.assertFalse(self.room5.can_check_in(self.guest4))
+
+#  test 17 - test 15 fail condition for lack of room capacity
+    def test_can_check_in__room_full(self):
+        self.room1.guest_list = [self.guest2]
+        self.assertFalse(self.room1.can_check_in(self.guest1))
+
+# test 18 - test 15 fail condition for guest already checked in
+    def test_can_check_in__already_checked_in(self):
+        self.room3.guest_list = [self.guest1]
+        self.assertFalse(self.room3.can_check_in(self.guest1))
+
+# test 19 - result of guest check_in
+    def test_check_guest_in(self):
+        self.room3.check_in(self.guest1)
+        self.room3.check_in(self.guest2)
+        self.assertEqual(2, self.room3.get_occupancy())
+        self.assertEqual(38, self.guest1.wallet)
+        self.assertEqual(18, self.guest2.wallet)
+
+#  test 20 - test check_out success
+    def test_check_out__success(self):
+        self.room3.check_in(self.guest1)
+        self.room3.check_in(self.guest2)
+        self.room3.check_out(self.guest1)
+        self.assertEqual(1, self.room3.get_occupancy())
+
+#  test 21 - test if check out guest if not in guest_list
+    def test_check_out__no_guest_found(self):
+        self.room3.check_in(self.guest1)
+        self.room3.check_out(self.guest2)
+        self.assertEqual(1, self.room3.get_occupancy())
+
+# test 22 - add a song to a room playlist
+    

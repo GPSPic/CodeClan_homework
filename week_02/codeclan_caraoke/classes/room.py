@@ -7,4 +7,26 @@ class Room:
         self.entry_fee = entry_fee
         self.drink_list = []
         self.tab = 0
+        self.guest_list = []
 
+    def get_occupancy(self):
+        return len(self.guest_list)
+    
+    def can_check_in(self, guest):
+        if guest in self.guest_list:
+            return False
+        if self.get_occupancy() >= self.capacity:
+            return False
+        if not guest.can_pay_for_item(self.entry_fee):
+            return False
+        else:
+            return True
+
+    def check_in(self, guest):
+        if self.can_check_in(guest):
+            self.guest_list.append(guest)
+            guest.reduce_wallet(self.entry_fee)
+
+    def check_out(self, guest):
+        if guest in self.guest_list:
+            self.guest_list.remove(guest)
