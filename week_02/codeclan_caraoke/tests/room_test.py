@@ -127,9 +127,26 @@ class TestRoom(unittest.TestCase):
 
 
 #  test 29 - test to have guest pay to add a song to a room's playlist
-    # def test_charge_fee_to_group_to_add_song_to_room_list__1_guest(self):
-    #     self.room3.check_in(self.guest2)
-    #     self.room3.charge_group_and_add_song(self.song4)
-    #     self.assertEqual(4, len(self.room1.song_list))
-    #     self.assertEqual(15, self.guest2.get_wallet())
+    def test_charge_fee_to_group_to_add_song_to_room_list__1_guest(self):
+        self.room3.check_in(self.guest2)
+        self.room3.charge_group_and_add_song(self.song4)
+        self.assertEqual(4, len(self.room3.song_list))
+        self.assertEqual(15, self.guest2.get_wallet())
 
+# test 30 - test to have several guests pay to add a song to the room's playlist
+    def test_charge_fee_to_group_to_add_song_to_room_list__2_guests(self):
+        self.room3.check_in(self.guest2)
+        self.room3.check_in(self.guest1)
+        self.room3.charge_group_and_add_song(self.song3)
+        self.assertEqual(4, len(self.room3.song_list))
+        self.assertEqual(0, self.guest2.get_wallet())
+        self.assertEqual(26, self.guest1.get_wallet())
+
+# test 31 - guest cannot add song due to lack of funds
+    def test_charge_fee_to_group_to_add_song_to_room_list__not_enough_money(self):
+        self.room3.check_in(self.guest2)
+        self.room3.check_in(self.guest3)
+        self.room3.charge_group_and_add_song(self.song3)
+        self.assertEqual(3, len(self.room3.song_list))
+        self.assertEqual(18, self.guest2.get_wallet())
+        self.assertEqual(8, self.guest3.get_wallet())   

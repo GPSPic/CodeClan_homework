@@ -45,3 +45,13 @@ class Room:
         for guest in self.guest_list:
             guests_pooled_money += guest.get_wallet()
         return guests_pooled_money >= item.price
+    
+    def charge_group_and_add_song(self, song):
+        song_remaining_balance = song.price
+        if self.group_can_afford_item(song):
+            self.add_song(song)
+            for guest in self.guest_list:
+                while guest.get_wallet() >= 1 and song_remaining_balance > 0:
+                    guest.reduce_wallet(1)
+                    song_remaining_balance -= 1
+
