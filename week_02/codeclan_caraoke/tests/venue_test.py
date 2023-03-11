@@ -87,3 +87,15 @@ class TestVenue(unittest.TestCase):
         message_to_guest = self.venue.assign_room_to_guest(self.guest1, "Deluxe")
         self.assertEqual(0, self.room1.get_occupancy())
         self.assertEqual("There is no such room", message_to_guest)
+
+# test 41 - collect tab from all room and add to till count
+    def test_collect_tab__tabs_empty(self):
+        self.venue.collect_tab()
+        self.assertEqual(0, self.venue.till)
+
+# test 42 - collect tab from several rooms
+    def test_collect_tab__several_rooms_with_tab(self):
+        self.venue.assign_room_to_guest(self.guest2, "Bargain")
+        self.venue.assign_room_to_guest(self.guest1, "Luxury")
+        self.venue.collect_tab()
+        self.assertEqual(25, self.venue.till)

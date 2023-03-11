@@ -30,6 +30,6 @@ class Venue:
                         room_check -= 1
             return "Sorry, all booked!"
 
-
-
-    # collect room tabs add to till
+    def collect_tab(self):
+        for room in self.rooms:
+            self.till += room.tab
