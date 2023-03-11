@@ -5,11 +5,10 @@ class Venue:
         self.till = 0
 
     def find_room_by_fanciness(self, fanciness_level):
-        matching_rooms = []
-        for room in self.rooms:
-            if fanciness_level in room.room_type:
-                matching_rooms.append(room)
-        # [room for room in self.rooms if fanciness_level == room.room_type]
+        matching_rooms = [room for room in self.rooms if fanciness_level == room.room_type]
+        # for room in self.rooms:
+        #     if fanciness_level in room.room_type:
+        #         matching_rooms.append(room)
         if matching_rooms == []:
             matching_rooms = "There is no such room"
         return matching_rooms
