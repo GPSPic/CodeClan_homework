@@ -55,3 +55,5 @@ class Room:
                     guest.reduce_wallet(1)
                     song_remaining_balance -= 1
 
+    def clear_tab(self):
+        self.tab = 0

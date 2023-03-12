@@ -150,3 +150,10 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(3, len(self.room3.song_list))
         self.assertEqual(18, self.guest2.get_wallet())
         self.assertEqual(8, self.guest3.get_wallet())   
+
+# test 43 - clear tab for when venue collects
+    def test_clear_room_tab(self):
+        self.room1.check_in(self.guest1)
+        self.assertEqual(40, self.guest1.get_wallet())
+        self.room1.clear_tab()
+        self.assertEqual(0, self.room1.tab)

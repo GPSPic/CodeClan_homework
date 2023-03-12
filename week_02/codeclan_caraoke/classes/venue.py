@@ -3,6 +3,7 @@ class Venue:
         self.name = "The Sore Sort"
         self.rooms = rooms
         self.till = 0
+        self.stock = {}
 
     def find_room_by_fanciness(self, fanciness_level):
         matching_rooms = [room for room in self.rooms if fanciness_level == room.room_type]
@@ -32,3 +33,14 @@ class Venue:
     def collect_tab(self):
         for room in self.rooms:
             self.till += room.tab
+            room.clear_tab()
+
+    def remove_drink(self, drink):
+        if drink in self.stock:
+            self.stock[drink] -= 1
+
+    def add_drink(self, drink):
+        if drink in self.stock:
+            self.stock[drink] += 1
+        else:
+            self.stock[drink] = 1

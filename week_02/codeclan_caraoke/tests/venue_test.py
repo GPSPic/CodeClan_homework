@@ -29,7 +29,15 @@ class TestVenue(unittest.TestCase):
         self.room4 = Room(4, "Standard", 2, self.standard_song_list, 12)
         self.room5 = Room(5, "Luxury", 3, self.luxury_song_list, 15)
         self.rooms = [self.room1, self.room2, self.room3, self.room4, self.room5]
+        self.drink1 = Drink("Gin", 5)
+        self.drink2 = Drink("Beer", 3)
+        self.drink3 = Drink("Wine", 4)
         self.venue = Venue(self.rooms)
+        self.venue.stock = {
+            self.drink1: 5,
+            self.drink2: 10,
+            self.drink3: 0,
+        }
 
 # test 32 - testing class
     def test_venue_has_rooms(self):
@@ -97,5 +105,22 @@ class TestVenue(unittest.TestCase):
     def test_collect_tab__several_rooms_with_tab(self):
         self.venue.assign_room_to_guest(self.guest2, "Bargain")
         self.venue.assign_room_to_guest(self.guest1, "Luxury")
+        self.assertEqual(10, self.room1.tab)
+        self.assertEqual(15, self.room5.tab)
         self.venue.collect_tab()
         self.assertEqual(25, self.venue.till)
+        self.assertEqual(0, self.room1.tab)
+        self.assertEqual(0, self.room5.tab)
+
+# test 44 - remove drink from stock dictionary
+    def test_remove_drink_from_venue_stock(self):
+        self.venue.remove_drink(self.drink1)
+        self.assertEqual(4, self.venue.stock[self.drink1])
+
+# test 45 - add drink to stock
+    def test_add_drink_to_stock(self):
+        self.venue.add_drink(self.drink3)
+        self.venue.add_drink(self.drink1)
+        self.assertEqual(6, self.venue.stock[self.drink1])
+        self.assertEqual(1, self.venue.stock[self.drink3])
+
