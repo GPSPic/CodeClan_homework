@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Gummy Bear orders</title>
+</head>
+<body>
+    <h1>Gummy Bear store</h1>
+    <h2>Track your order number:</h2>
+    <ul>
+    {% for order in order_list %}
+        <li><a href="/order/{{ order_list.index(order) }}">Order #{{ order_list.index(order) }}</a></li>
+        <!--  -->
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
+<!-- removed to accommodate slightly more semantically accurate structure
+        <ul>
+            {% for order in order_list %}
+            <li>Your details: {{ order.customer_name }}
+                <ul>
+                    <li>Order Date: {{ order.order_date }}</li>
+                    <li>Number of Gummies: {{ order.quantity }}</li>
+                    <li>Flavour: {{ order.gummy_flavour }}</li>
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+ -->
+

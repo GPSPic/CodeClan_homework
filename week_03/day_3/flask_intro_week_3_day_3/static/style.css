@@ -1,0 +1,18 @@
+html {
+    font-family: "Comic Neue", sans-serif;
+}
+
+body {
+    background-image: url("https://assets.teenvogue.com/photos/5848341848475f9a450908f9/16:9/w_2560%2Cc_limit/GettyImages-168417474.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-color: rgb(196, 138, 148); /*colour if image is unavailable*/
+}
+
+h1 {
+    font-size: 3rem;
+    color: #fff;
+    outline-color: #000;
+    /* -webkit-text-stroke-width: 1px; */
+}
