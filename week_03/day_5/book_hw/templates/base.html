@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title>Library - {{ title }}</title>
+</head>
+<body>
+    <header>
+        <h1>Read a Book, People! Library</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/books">Books Books Books</a></li>
+                <li><a href="/bookd/new">Add a book</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% block content %}
+        
+    {% endblock %}
+    <footer>
+        <h3>Read a Book, People! Library @ 2023</h3>
+        <nav>
+            <ul>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/privacy">Privacy</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
