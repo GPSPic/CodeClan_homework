@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h2>Books</h2>
     
-{% endblock content %}
+    {% for book in books %}
+    <ul>
+        <li><a href="/books/{{books.index(book)}}">{{ book.title }}</a></li>    
+        <li>Author: {{ book.author }}</li>    
+        <li>Genre: {{ book.genre }}</li> 
+    </ul>
+    {% endfor %}
+{% endblock %}

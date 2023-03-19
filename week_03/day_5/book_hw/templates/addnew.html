@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Add a Book to the current collection</h2>
+    <form action="/addnew" method="post">
+        <ul>
+            <li>
+                <label for="title">Book title: </label>
+                <input type="text" name="title" id="title" placeholder="Enter new title" required="required"
+                onfocus="this.placeholder=''" 
+                onblur="this.placeholder='Enter new title'" />
+            </li>
+            <li>
+                <label for="author">Author: </label>
+                <input type="text" name="Rubber duck" id="author" placeholder="Enter full name" required="required"
+                onfocus="this.placeholder=''" 
+                onblur="this.placeholder='Enter full name'" />
+            </li>
+            <li>
+                <label for="genre">Genre: </label>
+                <input type="text" id="genre" name="genre" placeholder="Enter a genre" required="required"
+                onfocus="this.placeholder=''" 
+                onblur="this.placeholder='Enter full name'" />
+            </li>
+        </ul>
+            <input type="submit" value="Add Book">
+    </form>
+{% endblock content %}
+
+<!-- Approach encounter issues is valid value is not selected before button is pressed                
+                <label for="genre">Select a Genre: </label>
+                <select name="genre" id="genre" placeholder="Genre" required="required">
+                    <option value="" disabled selected>Genre</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="psychological horror">Psychological horror</option>
+                    <option value="science-fiction">Science-Fiction</option>
+                    <option value="other">Other</option>
+                </select> -->

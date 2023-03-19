@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4>{{ book.title }}</h4>
+    <ul>
+        <li>Author: {{ book.author }}</li>
+        <li>Genre: {{ book.genre }}</li>
+
+    </ul>
+    <form action="/books/{{id}}/delete" method="post">
+        <input type="submit" value="Remove from Library" id="remove-from-library"/>
+    </form>
+{% endblock content %}
+
+        <!-- line above works by defining id in show.html GET route as id=id -->
+    <!-- <form action="/books/{{library.index(book)}}/delete" method="post"> -->
+
+        <!-- <li>
+            {% if book.available %}
+                <form action="/books/{{id}}/checkout" method="post">
+                    <label for="check-out-book">Currently available: </label>
+                    <input type="checkbox" id="check-out-book" name="check-out-book" checked>
+                    <input type="submit" value="Check out">
+                </form>
+            {% else %}
+                <form action="/books/{{id}}/checkin" method="post">
+                    <label for="check-in-book">Currently available: </label>
+                    <input type="checkbox" id="check-in-book" name="check-in-book">
+                    <input type="submit" value="Check in">
+            </form>
+            {% endif %}
+        </li> -->
