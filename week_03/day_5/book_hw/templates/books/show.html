@@ -6,15 +6,15 @@
         <li>Author: {{ book.author }}</li>
         <li>Genre: {{ book.genre }}</li>
         <li>Status: 
-            <form action="/books/{{id}}/availability" method="post">
+            <form action="/books/{{id}}" method="post">
                 <ul>
                     <li>
-                        <label for="check-out-book">Available: </label>
-                        <input type="radio" id="check-out-box" name="availability" value="check-in" checked>
+                        <input type="radio" id="check-out-box" name="availability" value="true" {{ "checked" if book.available }}>
+                        <label for="check-out-book">Available</label>
                     </li>
                     <li>
-                        <label for="check-in-book">Out for reading: </label>
-                        <input type="radio" id="check-in-box" name="availability" value="check-out">
+                        <input type="radio" id="check-in-box" name="availability" value="false" {{ "checked" if not book.available}}>
+                        <label for="check-in-book">Out for reading</label>
                     </li>
                     <li>    
                         <input type="submit" value="Update Status">

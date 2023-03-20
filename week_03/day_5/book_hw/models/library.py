@@ -1,10 +1,10 @@
 from models.book import Book
 
-book1 = Book("Automate the Boring Stuff with Python", "Al Sweigart", "Psychological horror")
-book2 = Book("The Wandering Inn", "pirateaba", "Fantasy")
-book3 = Book("Le Misanthrope", "Moliere", "Comedy")
-book4 = Book("Do androids dream of electric sheep?", "Philip K. Dick", "Science-Fiction")
-book5 = Book("And then there were none", "Agatha Christie", "Mystery")
+book1 = Book("Automate the Boring Stuff with Python", "Al Sweigart", "Psychological horror", True)
+book2 = Book("The Wandering Inn", "pirateaba", "Fantasy", True)
+book3 = Book("Le Misanthrope", "Moliere", "Comedy", True)
+book4 = Book("Do androids dream of electric sheep?", "Philip K. Dick", "Science-Fiction", True)
+book5 = Book("And then there were none", "Agatha Christie", "Mystery", True)
 book_list = [book1, book2, book3]
 
 def add_book(book):
@@ -22,6 +22,7 @@ def check_book_out(book):
 def check_book_in(book):
     if not book.available:
         book.available = True
+
 
 
 

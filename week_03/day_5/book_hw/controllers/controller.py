@@ -26,7 +26,7 @@ def add_book_to_library():
     title = request.form['title']
     author = request.form['Rubber duck']
     genre = request.form['genre']
-    new_book = Book(title, author, genre)
+    new_book = Book(title, author, genre, True)
     add_book(new_book)
     return redirect('/books')
 
@@ -36,26 +36,12 @@ def remove_book_from_library(id):
     delete_book(book)
     return redirect('/books')
 
-# @app.route('/books/<id>/availability', methods=['POST'])
-# def update_available(id):
-#     book = book_list[int(id)]
-#     current_availability = request.form('availability')
-#     if current_availability == 'check-in':
-#         check_book_in(book)
-#     else:
-#         check_book_out(book)
-#     return redirect('/books/<id>')
-
-
-# works by defining the id in python/flask in the show.html page {{id}} and from the GET route for /books/id (show.html)
-# @app.route('/books/<id>/delete', methods=['POST'])
-# def remove_book_from_library(id):
-#     book = book_list[int(id)]
-#     delete_book(book)
-#     return redirect('/books')
-
-# @app.route('/books/<id>/checkout', methods=['POST'])
-# def check_book_out_of_library(id):
-#     book = book_list[int(id)]
-#     check_book_out(book)
-#     return redirect('/books/<id>')
+@app.route('/books/<id>', methods=['POST'])
+def book_availability(id):
+    book = book_list[int(id)]
+    if request.form["availability"] == "true":
+        available = True
+    else:
+        available = False
+    book.toggle_check_out(available)
+    return redirect('/books/'+ id)
