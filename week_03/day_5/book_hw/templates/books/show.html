@@ -5,7 +5,23 @@
     <ul>
         <li>Author: {{ book.author }}</li>
         <li>Genre: {{ book.genre }}</li>
-
+        <li>Status: 
+            <form action="/books/{{id}}/availability" method="post">
+                <ul>
+                    <li>
+                        <label for="check-out-book">Available: </label>
+                        <input type="radio" id="check-out-box" name="availability" value="check-in" checked>
+                    </li>
+                    <li>
+                        <label for="check-in-book">Out for reading: </label>
+                        <input type="radio" id="check-in-box" name="availability" value="check-out">
+                    </li>
+                    <li>    
+                        <input type="submit" value="Update Status">
+                    </li>
+                </ul>
+            </form>
+        </li>
     </ul>
     <form action="/books/{{id}}/delete" method="post">
         <input type="submit" value="Remove from Library" id="remove-from-library"/>

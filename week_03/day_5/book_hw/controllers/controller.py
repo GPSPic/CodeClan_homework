@@ -36,6 +36,17 @@ def remove_book_from_library(id):
     delete_book(book)
     return redirect('/books')
 
+# @app.route('/books/<id>/availability', methods=['POST'])
+# def update_available(id):
+#     book = book_list[int(id)]
+#     current_availability = request.form('availability')
+#     if current_availability == 'check-in':
+#         check_book_in(book)
+#     else:
+#         check_book_out(book)
+#     return redirect('/books/<id>')
+
+
 # works by defining the id in python/flask in the show.html page {{id}} and from the GET route for /books/id (show.html)
 # @app.route('/books/<id>/delete', methods=['POST'])
 # def remove_book_from_library(id):
