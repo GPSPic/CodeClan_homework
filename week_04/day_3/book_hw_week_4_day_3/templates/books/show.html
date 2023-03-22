@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul>
+    <li>Title: {{book.title}}</li>
+    <li>Genre: {{book.genre}}</li>
+    <li>Author: {{book.author.name}}</li>
+</ul>
+{% endblock content %}

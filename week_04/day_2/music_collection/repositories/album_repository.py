@@ -1,4 +1,5 @@
 from db.run_sql import run_sql
+import pdb
 
 from models.album import Album
 from models.artist import Artist
@@ -32,10 +33,15 @@ def select_all():
     albums = []
     # create s string of sql
     sql = "SELECT * FROM albums"
-    
+    # send SQL string to run_sql 
     results = run_sql(sql)
+
+    # pdb.set_trace()
+    # translate the dictionaries into objects
     for row in results:
-        album = Album(row['title'], row['genre'], row['artist_id'], row['id'])
+        # create new album object with artist_id as an artist object 
+        artist = artist_repository.select(row['artist_id'])
+        album = Album(row['title'], row['genre'], artist, row['id'])
         albums.append(album)
     # return the list
     return albums
