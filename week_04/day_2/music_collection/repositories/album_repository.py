@@ -28,12 +28,16 @@ def select(id):
     return album
 
 def select_all():
+    # set up empty list to be returned
     albums = []
+    # create s string of sql
     sql = "SELECT * FROM albums"
+    
     results = run_sql(sql)
     for row in results:
         album = Album(row['title'], row['genre'], row['artist_id'], row['id'])
         albums.append(album)
+    # return the list
     return albums
 
 def albums_by_artist(artist):
@@ -49,4 +53,9 @@ def albums_by_artist(artist):
 def delete_album(id):
     sql = "DELETE FROM albums WHERE id = %s"
     values = [id]
+    run_sql(sql, values)
+
+def update(album):
+    sql = "UPDATE albums SET (title, genre, artist_id)) = (%s, %s, %s) where id = %s"
+    values = [album.title, album.genre, album.artist_id]
     run_sql(sql, values)

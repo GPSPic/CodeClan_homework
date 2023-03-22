@@ -35,14 +35,12 @@ def select_all():
         artists.append(artist)
     return artists
 
-# def delete_artist(id):
-#     sql = "DELETE FROM artists WHERE id = %s"
-#     values = [id]
-#     run_sql(sql, values)
+def delete_artist(id):
+    sql = "DELETE FROM artists WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
         
-# def update(artist):
-#     sql = """UPDATE artists 
-#         SET (name) = (%s) where id = (
-#         SELECT artist_id FROM albums WHERE artist_id = artists.id)"""
-#     values = [artist.name, artist.id]
-#     run_sql(sql, values)
+def update(artist):
+    sql = "UPDATE artists SET name = %s where id = %s"
+    values = [artist.name, artist.id]
+    run_sql(sql, values)
