@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="/books/{{book.id}}" method="post">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{book.title}}" required autofocus>
+  </div>
+
+  <div>
+    <label for="genre">Genre:</label>
+    <input type="text" id="genre" name="genre" value="{{book.genre}}" required>
+  </div>
+
+  <!-- will not work with different author value because book requires an author that has been saved before. 
+    Requires an add author page/route and changing the input/element type to a select -->
+  <div>
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author_id" value="{{book.author.name}}" required>
+  </div>
+
+
+  <!-- <div>
+    <label for="completed">Completed:</label>
+    <select id="completed" name="completed">
+
+      <option value="true"
+        {% if book.completed == True %} selected="selected" {% endif %}>
+        True
+      </option>
+
+      <option value="false"
+        {% if book.completed == False %} selected="selected" {% endif %}>
+        False
+      </option>
+
+    </select>
+  </div> -->
+
+  <!-- <div>
+    <label for="user">User:</label>
+    <select id="user" name="user_id">
+      {% for user in all_users %}
+        <option value="{{ user.id }}"
+          {% if book.user.id== user.id %} selected="selected"{% endif %}>
+          {{ user.first_name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div> -->
+
+  <button type="submit">Update Task</button>
+
+</form>
+
+{% endblock %}

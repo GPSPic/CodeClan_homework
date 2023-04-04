@@ -28,3 +28,4 @@ def select(id):
         result = results[0]
         author = Author(result['name'], result['id'])
     return author
+
