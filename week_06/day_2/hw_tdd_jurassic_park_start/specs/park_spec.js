@@ -9,6 +9,8 @@ describe('Park', function() {
 
   beforeEach(function () {
     dinosaur1 = new Dinosaur('t-rex', 'carnivore', 50)
+    dinosaur4 = new Dinosaur('t-rex', 'carnivore', 50)
+    dinosaur5 = new Dinosaur('t-rex', 'carnivore', 50)
     dinosaur2 = new Dinosaur('triceratops', 'herbivore', 40)
     dinosaur3 = new Dinosaur('ankylosaurus', 'herbivore', 30)
     park = new Park("Jurrasic Park", 20, [dinosaur1, dinosaur2])
@@ -67,4 +69,13 @@ describe('Park', function() {
     assert.strictEqual(actual, 657000)
   });
 
+  it('should be able to remove all dinosaurs of a particular species', function () {
+    park.addDinosaur(dinosaur4)
+    park.addDinosaur(dinosaur5)
+    const actual = park.dinosaurCollection.length
+    assert.strictEqual(actual, 4)
+    park.removeAllDinoBySpecies('t-rex')
+    const newActual = park.dinosaurCollection.length
+    assert.strictEqual(newActual, 1)
+  });
 });

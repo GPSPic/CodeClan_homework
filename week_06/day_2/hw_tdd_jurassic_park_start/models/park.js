@@ -55,4 +55,15 @@ Park.prototype.yearlyRevenue = function () {
     return yearlyIncome
 }
 
+Park.prototype.removeAllDinoBySpecies = function (species) {
+    const newDinoArray = []
+    for (dinosaur of this.dinosaurCollection) {
+        if (dinosaur.species !== species) {
+            newDinoArray.push(dinosaur)
+        }
+    }   
+    this.dinosaurCollection = newDinoArray
+    return this.dinosaurCollection
+}
+
 module.exports = Park
