@@ -18,7 +18,7 @@ describe('IsogramFinder', function () {
   });
 
   it('should be able to detect a non-isogram case insensitively', function () {
-    const isogramFinder = new IsogramFinder('NotAnIsogram');
+    const isogramFinder = new IsogramFinder('NOtAnIsogram');
     assert.strictEqual(isogramFinder.isIsogram(), false);
   });
 });
