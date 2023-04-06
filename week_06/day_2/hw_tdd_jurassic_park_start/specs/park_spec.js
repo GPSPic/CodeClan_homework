@@ -3,17 +3,20 @@ const Park = require('../models/park.js');
 const Dinosaur = require('../models/dinosaur.js');
 
 describe('Park', function() {
-  let park
-  let dinosaur1
-  let dinosaur2
-
+  let dinosaur1;
+  let dinosaur2;
+  let dinosaur3;
+  let dinosaur4;
+  let dinosaur5;
+  let park;
+  
   beforeEach(function () {
-    dinosaur1 = new Dinosaur('t-rex', 'carnivore', 50)
-    dinosaur4 = new Dinosaur('t-rex', 'carnivore', 50)
-    dinosaur5 = new Dinosaur('t-rex', 'carnivore', 50)
-    dinosaur2 = new Dinosaur('triceratops', 'herbivore', 40)
-    dinosaur3 = new Dinosaur('ankylosaurus', 'herbivore', 30)
-    park = new Park("Jurrasic Park", 20, [dinosaur1, dinosaur2])
+    dinosaur1 = new Dinosaur('t-rex', 'carnivore', 50);
+    dinosaur2 = new Dinosaur('triceratops', 'herbivore', 40);
+    dinosaur3 = new Dinosaur('ankylosaurus', 'herbivore', 30);
+    dinosaur4 = new Dinosaur('t-rex', 'carnivore', 50);
+    dinosaur5 = new Dinosaur('t-rex', 'carnivore', 50);
+    park = new Park("Jurrasic Park", 20, [dinosaur1, dinosaur2]);
   })
 
   it('should have a name', function () {
