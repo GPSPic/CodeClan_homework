@@ -10,7 +10,6 @@ function App() {
   ]);
 
   const [newTask, setNewTask] = useState('');
-
   const [newTaskPriority, setNewTaskPriority] = useState('')
 
   const handleSubmit = (event) => {
@@ -22,6 +21,7 @@ function App() {
     })
     setToDo(copyToDoList);
     setNewTask('');
+    setNewTaskPriority('');
   };
 
   const handleInput = (event) => {
@@ -38,17 +38,17 @@ function App() {
     <>
       <h1>To-Do List</h1>
       <ul>
-        {todo.map(task => {
-          return <li className={task.priority === "high" ? "high" : "low"} key={todo.indexOf(task)}>{task.name}</li>
+        {todo.map((task, index) => {
+          return <li className={task.priority === "high" ? "high" : "low"} key={index}>{task.name}</li>
         })}
       </ul>
       <form onSubmit={handleSubmit}>
         <label htmlFor='new-task'>Add new: </label>
         <input type='text' id='new-task' onChange={handleInput} value={newTask}/>
         <label htmlFor="high-priority">High</label>
-        <input type="radio" id='high-priority' value="high" name="priority" onChange={setPriority}/>
+        <input type="radio" id='high-priority' checked={newTaskPriority === "high"} value="high" name="priority" onChange={setPriority} required/>
         <label htmlFor="low-priority">Low</label>
-        <input type="radio" id='low-priority' value="low" name="priority" onChange={setPriority}/>
+        <input type="radio" id='low-priority' checked={newTaskPriority === "low"} value="low" name="priority" onChange={setPriority}/>
         <button>Add new</button>
       </form>
     </>

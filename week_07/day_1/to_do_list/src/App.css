@@ -2,10 +2,23 @@
   text-align: center;
 }
 
+ul {
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  border: solid;
+  list-style: none;
+  padding: 1rem;
+  text-align: center;
+  margin: auto;
+}
+
 li.high {
   color: rgb(236, 64, 64)
 }
 
 li.low {
-  color: rgb(255, 106, 0);
+  color: rgb(25, 0, 255);
 }
