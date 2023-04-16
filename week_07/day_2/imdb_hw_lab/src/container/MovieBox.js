@@ -33,7 +33,8 @@ const MovieBox = () => {
     ])
 
     const addMovie = movie => {
-      movie.id = Date.now
+      movie.id = Date.now()
+      console.log(movie.id)
       setMovies([...movies, movie])
     }
 
