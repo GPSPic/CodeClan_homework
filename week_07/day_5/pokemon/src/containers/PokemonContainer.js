@@ -6,10 +6,10 @@ import PokemonList from "../components/PokemonList";
 const PokemonContainer = () => {
     const [selectedPokemon, setSelectedPokemon] = useState(null)
 
-    const [pokemons, setPokemons] = useState([])
+    const [pokemons, setPokemons] = useState(null)
 
     const getPokemons = () => {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0')
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=151&offset=0')
             .then(res => res.json())
             .then(data => {
                 const pokemonDetailsPromise = data.results.map(pokemon => {

@@ -5,7 +5,7 @@ function App() {
   return (
     
     <div className="App">
-      <h1>App title here</h1>
+      <h1>Gotta catch 'em all!</h1>
       <PokemonContainer />
     </div>
   );
