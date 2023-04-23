@@ -19,7 +19,7 @@ const PokemonList = ({pokemons, onSelectedPokemon}) => {
 
     return ( 
         <>
-            <ul>
+            <ul className='scrollable'>
                 {pokemonItem}
             </ul>
         </>

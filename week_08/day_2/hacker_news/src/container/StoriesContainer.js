@@ -4,8 +4,8 @@ import SearchField from "../components/SearchField";
 
 const StoriesContainer = () => {
     const [stories, setStories] = useState(null)
-    // const [searchTerms, setSearchTerms] = useState(null)
     const [sortedStories, setSortedStories] = useState(null)
+    // const [searchTerms, setSearchTerms] = useState(null)
 
     useEffect(() => {
         loadStories()
@@ -44,7 +44,6 @@ const StoriesContainer = () => {
 
     return ( 
         <>
-            <h2>Stories Container exists</h2>
             <SearchField onChangeUpdateSearchTerms={onChangeUpdateSearchTerms} />
             {sortedStories ? <StoriesList stories={sortedStories}/> : <p>Fetching article data, please wait...</p>}
         </>
@@ -52,6 +51,3 @@ const StoriesContainer = () => {
 }
  
 export default StoriesContainer;
-
-
-// {

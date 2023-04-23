@@ -8,7 +8,7 @@ const SearchField = ({onChangeUpdateSearchTerms}) => {
     return ( 
         <>
             <label htmlFor="search-input"></label>
-            <input id="search-input" type="text" onChange={handleChange}></input>
+            <input id="search-input" type="text" onChange={handleChange} placeholder="Search..."></input>
         </>
      );
 }
