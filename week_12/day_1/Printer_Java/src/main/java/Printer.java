@@ -21,13 +21,12 @@ public class Printer {
         if (this.getTonerLevel() > totalPages) {
             this.tonerLevel = this.tonerLevel - totalPages;
         } else {
-            while (this.getTonerLevel() > 0) {
-                this.tonerLevel--;
-
-            }
+                this.tonerLevel = 0;
         }
         if (totalPages <= this.getRemainingPaper()) {
-            this.remainingPaper = this.remainingPaper - totalPages;
+            this.remainingPaper -= totalPages;
+        } else {
+            System.out.println("Error: Not enough paper for current order!");
         }
     }
 }
