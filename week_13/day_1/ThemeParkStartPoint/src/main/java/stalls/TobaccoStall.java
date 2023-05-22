@@ -1,8 +1,17 @@
 package stalls;
 
-public class TobaccoStall extends Stall {
+import behaviours.IReviewed;
+import behaviours.ISecurity;
+import people.Visitor;
 
-    public TobaccoStall(String name, String ownerName, ParkingSpot parkingSpot) {
-        super(name, ownerName, parkingSpot);
+public class TobaccoStall extends Stall implements IReviewed, ISecurity {
+
+    public TobaccoStall(String name, String ownerName, int rating, ParkingSpot parkingSpot) {
+        super(name, ownerName, rating, parkingSpot);
+    }
+
+    @Override
+    public boolean isAllowedTo(Visitor visitor) {
+        return visitor.getAge() > 18;
     }
 }
