@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Library {
 
@@ -18,5 +19,14 @@ public class Library {
         if (getStockCount() < this.capacity) {
             this.stock.add(book);
         }
+    }
+
+    public boolean hasBookAvailableByTitle(String title) {
+        for (Book book : this.stock) {
+            if (Objects.equals(book.getTitle(), title)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

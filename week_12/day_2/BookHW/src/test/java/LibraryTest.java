@@ -13,7 +13,7 @@ public class LibraryTest {
 
     @Before
     public void before(){
-        book1 = new Book("1964", "George Orwell", "Science-Fiction");
+        book1 = new Book("1984", "George Orwell", "Science-Fiction");
         book2 = new Book("It", "Stephen King", "Horror");
         book3 = new Book("Java and you", "Sid Istic", "Psychological Horror");
         library = new Library(5000);
@@ -36,5 +36,11 @@ public class LibraryTest {
         smollLibrary.addBook(book1);
         smollLibrary.addBook(book3);
         assertEquals(1, smollLibrary.getStockCount());
+    }
+
+    @Test
+    public void testHasBookAvailableByTitle() {
+        library.addBook(book1);
+        assertEquals(true, library.hasBookAvailableByTitle("1984"));
     }
 }
