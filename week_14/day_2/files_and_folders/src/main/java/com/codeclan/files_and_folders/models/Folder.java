@@ -23,6 +23,7 @@ public class Folder {
 
     @ManyToOne
     @JoinColumn(name = "person_id", nullable = false)
+    @JsonIgnoreProperties({"folders"})
     private Person person;
 
     public Folder(String name, Person person) {
